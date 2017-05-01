@@ -108,8 +108,6 @@ namespace NPainter
             ui32 number_threads = 1; // debug mode
         #endif
             png::image<png::rgb_pixel> image(settings->screen.x_size, settings->screen.y_size);
-            
-            std::vector<std::thread> t(number_threads);
         
         #pragma omp parallel num_threads(number_threads)
             #pragma omp single
