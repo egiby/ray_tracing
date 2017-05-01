@@ -127,7 +127,6 @@ namespace NPainter
             
             image.write(result_file);
         }
-        //~ #pragma omp taskwait
         
         friend void paintPart(ui32 first, ui32 last, png::image<png::rgb_pixel> &image, PNGPainter &painter);
         
@@ -136,18 +135,6 @@ namespace NPainter
             delete settings;
         }
     };
-    
-    void paintPart(ui32 first, ui32 last, png::image<png::rgb_pixel> &image, PNGPainter &painter)
-    {
-        for (ui32 x = first; x < last; ++x)
-            for (ui32 y = 0; y < painter.settings->screen.y_size; ++y)
-            {
-                Point pixel = painter.calcPixelCenter(x, y);
-                Ray ray(painter.settings->eye, pixel - painter.settings->eye);
-                
-                image[y][x] = calcColor(intersectAll(ray, painter.settings), painter.settings);
-            }
-    }
 };
 
 #endif
