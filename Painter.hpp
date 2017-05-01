@@ -48,9 +48,9 @@ namespace NPainter
         return png::rgb_pixel(c.red, c.green, c.blue);
     }
     
-    class Painter;
+    class PNGPainter;
     
-    void paintPart(ui32 first, ui32 last, png::image<png::rgb_pixel> &image, Painter &painter);
+    void paintPart(ui32 first, ui32 last, png::image<png::rgb_pixel> &image, PNGPainter &painter);
     
     png::rgb_pixel calcColor(const Intersection &result, const ImageSettings * settings)
     {
@@ -77,7 +77,7 @@ namespace NPainter
         return makePixel((result.object->getMaterial()->calcColor(0, 0)) * illuminance);
     }
     
-    class Painter
+    class PNGPainter
     {
     protected:
         ImageSettings * settings;
@@ -89,12 +89,12 @@ namespace NPainter
         }
         
     public:
-        explicit Painter(ImageSettings * settings)
+        explicit PNGPainter(ImageSettings * settings)
         : settings(settings)
         {
         }
         
-        explicit Painter(std::string filename = DEFAULT_INPUT_FILE, IFileParser * parser = new DefaultParser())
+        explicit PNGPainter(std::string filename = DEFAULT_INPUT_FILE, IFileParser * parser = new DefaultParser())
         : settings(parser->parseFile(filename))
         {
             delete parser;
@@ -108,36 +108,36 @@ namespace NPainter
             ui32 number_threads = 1; // debug mode
         #endif
             png::image<png::rgb_pixel> image(settings->screen.x_size, settings->screen.y_size);
-            //~ cerr << sizeof(image) << '\n';
             
             std::vector<std::thread> t(number_threads);
-            
-            for (ui32 k = 0; k < number_threads; ++k)
-            {
-                ui32 first =  k * (settings->screen.x_size / number_threads);
-                ui32 last = (k + 1) * (settings->screen.x_size / number_threads);
-                if (k + 1 == number_threads)
-                    last = settings->screen.x_size;
-                
-                t[k] = std::thread(paintPart, first, last, std::ref(image), std::ref(*this));
-            }
-            
-            for (ui32 i = 0; i < number_threads; ++i)
-                t[i].join();
+        
+        #pragma omp parallel num_threads(number_threads)
+            #pragma omp single
+            for (ui32 x = 0; x < settings->screen.x_size; ++x)
+                for (ui32 y = 0; y < settings->screen.y_size; ++y)
+                {
+                    #pragma omp task
+                    {
+                        Point pixel = calcPixelCenter(x, y);
+                        Ray ray(settings->eye, pixel - settings->eye);
+                        
+                        image[y][x] = calcColor(intersectAll(ray, settings), settings);
+                    }
+                }
             
             image.write(result_file);
-            //~ cerr << sizeof(image) << '\n';
         }
+        //~ #pragma omp taskwait
         
-        friend void paintPart(ui32 first, ui32 last, png::image<png::rgb_pixel> &image, Painter &painter);
+        friend void paintPart(ui32 first, ui32 last, png::image<png::rgb_pixel> &image, PNGPainter &painter);
         
-        ~Painter()
+        ~PNGPainter()
         {
             delete settings;
         }
     };
     
-    void paintPart(ui32 first, ui32 last, png::image<png::rgb_pixel> &image, Painter &painter)
+    void paintPart(ui32 first, ui32 last, png::image<png::rgb_pixel> &image, PNGPainter &painter)
     {
         for (ui32 x = first; x < last; ++x)
             for (ui32 y = 0; y < painter.settings->screen.y_size; ++y)

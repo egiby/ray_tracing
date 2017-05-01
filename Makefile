@@ -1,3 +1,3 @@
 all:
-	clang++ -std=c++14 -lgtest `libpng-config --ldflags` \
-	-O2 -Wall -Wextra -pthread -Wno-unused-const-variable -D_GEANY -o main main.cpp
+	clang++ -std=c++14 `libpng-config --ldflags` \
+	-O2 -Wall -Wextra -Wno-unused-const-variable -D_GEANY -o main main.cpp -fopenmp -pthread
