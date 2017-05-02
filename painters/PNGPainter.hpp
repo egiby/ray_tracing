@@ -1,16 +1,16 @@
 #ifndef _PAINTER
 #define _PAINTER
 
-#include "geometry/Double.hpp"
-#include "geometry/Geometry.hpp"
+#include "../geometry/Double.hpp"
+#include "../geometry/Geometry.hpp"
 
-#include "objects/GeometricObject.hpp"
-#include "objects/Triangle.hpp"
-#include "objects/Parallelogram.hpp"
+#include "../objects/GeometricObject.hpp"
+#include "../objects/Triangle.hpp"
+#include "../objects/Parallelogram.hpp"
 
-#include "parsers/DefaultParser.hpp"
+#include "../parsers/DefaultParser.hpp"
 
-#include "calculations/Intersecter.hpp"
+#include "../calculations/Intersecter.hpp"
 
 #include <png++/png.hpp>
 

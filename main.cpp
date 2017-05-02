@@ -1,4 +1,4 @@
-#include "Painter.hpp"
+#include "painters/PNGPainter.hpp"
 #include "parsers/STLParser.hpp"
 #include "parsers/RTParser.hpp"
 
