@@ -1,12 +1,14 @@
 #ifndef _IPAINTER
 #define _IPAINTER
 
-namespace NPainter 
+#include <vector>
+
+#include "../objects/GeometricObject.hpp"
+
+class IPainter
 {
-    class IPainter
-    {
-    public:
-        
-    };
-}
+public:
+    virtual std::vector<std::vector<NGeometricObjects::Color> > getImage() const = 0;
+    virtual void paint(std::string result_file) const = 0;
+};
 #endif
