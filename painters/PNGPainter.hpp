@@ -83,18 +83,14 @@ namespace NPainter
         {
             vector<vector<Color> > image(settings->screen.x_size, vector<Color>(settings->screen.y_size));
         
-        #pragma omp parallel num_threads(getNumThreads())
-            #pragma omp single
-            for (ui32 x = 0; x < settings->screen.x_size; ++x)
+        #pragma omp parallel for num_threads(getNumThreads())
+            for (int x = 0; x < settings->screen.x_size; ++x)
                 for (ui32 y = 0; y < settings->screen.y_size; ++y)
                 {
-                    #pragma omp task
-                    {
-                        Point pixel = calcPixelCenter(x, y);
-                        Ray ray(settings->eye, pixel - settings->eye);
+                    Point pixel = calcPixelCenter(x, y);
+                    Ray ray(settings->eye, pixel - settings->eye);
                         
-                        image[x][y] = calcColor(intersecter->intersectAll(ray), settings, intersecter);
-                    }
+                    image[x][y] = calcColor(intersecter->intersectAll(ray), settings, intersecter);
                 }
             return image;
         }
@@ -103,18 +99,14 @@ namespace NPainter
         {
             png::image<png::rgb_pixel> image(settings->screen.x_size, settings->screen.y_size);
         
-        #pragma omp parallel num_threads(getNumThreads())
-            #pragma omp single
-            for (ui32 x = 0; x < settings->screen.x_size; ++x)
+        #pragma omp parallel for num_threads(getNumThreads())
+            for (int x = 0; x < settings->screen.x_size; ++x)
                 for (ui32 y = 0; y < settings->screen.y_size; ++y)
                 {
-                    #pragma omp task
-                    {
-                        Point pixel = calcPixelCenter(x, y);
-                        Ray ray(settings->eye, pixel - settings->eye);
+                    Point pixel = calcPixelCenter(x, y);
+                    Ray ray(settings->eye, pixel - settings->eye);
 
-                        image[y][x] = makePixel(calcColor(intersecter->intersectAll(ray), settings, intersecter));
-                    }
+                    image[y][x] = makePixel(calcColor(intersecter->intersectAll(ray), settings, intersecter));
                 }
             
             image.write(result_file);

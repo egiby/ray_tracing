@@ -1,6 +1,5 @@
 #include "painters/PNGPainter.hpp"
-#include "parsers/STLParser.hpp"
-#include "parsers/RTParser.hpp"
+#include "ray_tracing.h"
 
 #include <iostream>
 #include <chrono>
@@ -8,21 +7,21 @@
 using std::cout;
 using std::cerr;
 
-using NGeometry::Point;
-using NGeometry::Vector;
-using NImageSettings::Screen;
+using Geometry::Point;
+using Geometry::Vector;
+using ImageSettings::Screen;
 
 int main()
 {
     auto start = std::chrono::system_clock::now();
 
     //~ // teapot
-//    Screen screen = Screen(Point{150, 150, 100}, Point{150, 0, 100}, Point{0, 150, 100}, 500, 500);
-//    Point eye = {0, 0, 100000};
+    Screen screen = Screen(Point{150, 150, 100}, Point{150, 0, 100}, Point{0, 150, 100}, 500, 500);
+    Point eye = {0, 0, 100000};
     
     // humanoid and cube
-    Screen screen = Screen(Point{-30, -10, 20}, Point{-30, -10, -20}, Point{10, 30, 20}, 500, 500);
-    Point eye = {-100000, 100000, 0};
+//    Screen screen = Screen(Point{-30, -10, 20}, Point{-30, -10, -20}, Point{10, 30, 20}, 500, 500);
+//    Point eye = {-100000, 100000, 0};
     
     std::vector<NImageSettings::LightSource> sources;
     
@@ -38,8 +37,8 @@ int main()
     sources.push_back({3000, (left_bottom_angle + right_upper) / 2});
     
     NPainter::PNGPainter painter("models/teapot.stl", new NSTLParser::STLParser(eye, screen, sources));
-    //~ NPainter::Painter painter("models/humanoid.stl", new NSTLParser::STLParser(eye, screen, sources));
-    //~ NPainter::Painter painter("models/cube.stl", new NSTLParser::STLParser(eye, screen, sources));
+//    ~ NPainter::Painter painter("models/humanoid.stl", new NSTLParser::STLParser(eye, screen, sources));
+//    NPainter::PNGPainter painter("models/cube.stl", new NSTLParser::STLParser(eye, screen, sources));
 //    NPainter::PNGPainter painter("settings.in");
     //~ NPainter::PNGPainter painter("settings.rt", new NRTParser::RTParser());
     //~ NPainter::Painter painter("settings2.in");
@@ -56,5 +55,7 @@ int main()
     cerr << std::chrono::duration<double>(end - start).count() << "s\n";
     cerr << std::chrono::duration<double, std::ratio<60, 1> >(end - start).count() << "m\n";
     
+
+	system("pause");
     return 0;
 }
