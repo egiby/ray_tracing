@@ -5,13 +5,16 @@
 
 #include <string>
 
-class IFileParser
+namespace NIFileParser
 {
-public:
-    virtual NImageSettings::ImageSettings * parseFile(std::string filename) = 0;
-    virtual ~IFileParser()
+    class IFileParser
     {
-    }
-};
+    public:
+        virtual NImageSettings::ImageSettings * parseFile(std::string filename) = 0;
+        virtual ~IFileParser()
+        {
+        }
+    };
+}
 
 #endif

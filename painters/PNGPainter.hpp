@@ -1,16 +1,7 @@
 #ifndef _PAINTER
 #define _PAINTER
 
-#include "../geometry/Double.hpp"
-#include "../geometry/Geometry.hpp"
-
-#include "../objects/GeometricObject.hpp"
-#include "../objects/Triangle.hpp"
-#include "../objects/Parallelogram.hpp"
-
-#include "../parsers/DefaultParser.hpp"
-
-#include "../calculations/Intersecter.hpp"
+#include "../ray_tracing.h"
 
 #include "IPainter.hpp"
 
@@ -27,19 +18,20 @@
 
 namespace NPainter
 {
-    using NGeometry::Point;
-    using NGeometry::Vector;
-    using NGeometry::Ray;
+    using Geometry::Point;
+    using Geometry::Vector;
+    using Geometry::Ray;
     
-    using NDouble::Double;
+    using GeometricObjects::IGeometricObject;
+    using GeometricObjects::Color;
     
-    using NGeometricObjects::IGeometricObject;
-    using NGeometricObjects::Color;
+    using ImageSettings::ImageSettings;
     
-    using NImageSettings::ImageSettings;
-    
-    using NDefaultParser::DefaultParser;
-    
+    using Parsers::DefaultParser;
+    using Parsers::IFileParser;
+
+    using Calculations::Intersecter;
+
     using std::cerr;
     using std::vector;
     
@@ -55,31 +47,6 @@ namespace NPainter
     
     void paintPart(ui32 first, ui32 last, png::image<png::rgb_pixel> &image, PNGPainter &painter);
     
-    Color calcColor(const Intersection &result, const ImageSettings * settings)
-    {
-        if (result.object == nullptr)
-            return {0, 0, 0};
-        
-        Double illuminance = 0.;
-        
-        for (const auto &source: settings->light_sources)
-        {
-            Ray light_ray = Ray(source.point, result.point - source.point);
-            auto intersection = intersectAll(light_ray, settings);
-            
-            if (intersection.object != result.object)
-                continue;
-            
-            Vector radius = -(result.point - source.point);
-            Vector normal = result.object->getNormal(result.point);
-            
-            illuminance += source.light_force * std::max(radius * normal, Double(0.)) / 
-                           (std::pow(abs(radius), 3) * abs(normal));
-        }
-        
-        return (result.object->getMaterial()->calcColor(0, 0)) * illuminance;
-    }
-    
     class PNGPainter: public IPainter
     {
         ui32 getNumThreads() const
@@ -93,6 +60,7 @@ namespace NPainter
         }
     protected:
         ImageSettings * settings;
+        Intersecter * intersecter;
         
         Point calcPixelCenter(ui32 x, ui32 y) const
         {
@@ -102,12 +70,12 @@ namespace NPainter
         
     public:
         explicit PNGPainter(ImageSettings * settings)
-        : settings(settings)
+        : settings(settings), intersecter(new Intersecter(settings))
         {
         }
         
         explicit PNGPainter(std::string filename = DEFAULT_INPUT_FILE, IFileParser * parser = new DefaultParser())
-        : settings(parser->parseFile(filename))
+        : settings(parser->parseFile(filename)), intersecter(new Intersecter(settings))
         {
             delete parser;
         }
@@ -126,7 +94,7 @@ namespace NPainter
                         Point pixel = calcPixelCenter(x, y);
                         Ray ray(settings->eye, pixel - settings->eye);
                         
-                        image[x][y] = calcColor(intersectAll(ray, settings), settings);
+                        image[x][y] = calcColor(intersecter->intersectAll(ray), settings, intersecter);
                     }
                 }
             return image;
@@ -145,8 +113,8 @@ namespace NPainter
                     {
                         Point pixel = calcPixelCenter(x, y);
                         Ray ray(settings->eye, pixel - settings->eye);
-                        
-                        image[y][x] = makePixel(calcColor(intersectAll(ray, settings), settings));
+
+                        image[y][x] = makePixel(calcColor(intersecter->intersectAll(ray), settings, intersecter));
                     }
                 }
             
@@ -158,6 +126,7 @@ namespace NPainter
         ~PNGPainter()
         {
             delete settings;
+            delete intersecter;
         }
     };
 };

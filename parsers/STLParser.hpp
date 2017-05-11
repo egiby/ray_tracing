@@ -20,6 +20,7 @@ namespace NSTLParser
     using NGeometricObjects::Color;
     using NGeometricObjects::Material;
     using NImageSettings::LightSource;
+    using NIFileParser::IFileParser;
     
     class STLParser: public IFileParser
     {

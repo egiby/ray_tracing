@@ -16,7 +16,7 @@ materials
     
     entry
         name yellow  
-        color 128 128 128
+        color 128 128 0
         alpha 0
         reflect 0
         refract 0

@@ -58,6 +58,7 @@ namespace NDefaultParser
     using NGeometricObjects::IGeometricObject;
     using NGeometricObjects::Color;
     using NGeometricObjects::Material;
+    using NIFileParser::IFileParser;
     
     class DefaultParser: public IFileParser
     {
@@ -134,7 +135,7 @@ namespace NDefaultParser
                     in >> center >> radius >> c.red >> c.green >> c.blue;
                     
                     materials.push_back(new Material(c));
-                    objects.push_back(new Sphere{center, radius, materials.back()});
+                    objects.push_back(new NSphere::Sphere{center, radius, materials.back()});
                 }
                 // to be continued...
             }

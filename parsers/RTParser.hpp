@@ -23,6 +23,7 @@ namespace NRTParser
     using NGeometricObjects::IGeometricObject;
     using NGeometricObjects::Color;
     using NGeometricObjects::Material;
+    using NIFileParser::IFileParser;
     
     using std::string;
     
@@ -305,7 +306,7 @@ namespace NRTParser
             cerr << center << '\n';
             cerr << radius << '\n';
             
-            return new Sphere{center, radius, material};
+            return new NSphere::Sphere{center, radius, material};
         }
         
         IGeometricObject * parseTriangle(std::ifstream &in, std::map<string, Material*> materials)
