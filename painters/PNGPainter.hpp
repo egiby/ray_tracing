@@ -23,7 +23,6 @@ namespace NPainter
     using Geometry::Ray;
     
     using GeometricObjects::IGeometricObject;
-    using GeometricObjects::Color;
     
     using ImageSettings::ImageSettings;
     

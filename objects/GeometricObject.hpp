@@ -13,10 +13,9 @@
 
 #include <png++/png.hpp>
 
-using std::cerr;
-
 namespace NGeometricObjects
 {
+    using std::cerr;
     struct Color
     {
         ui32 red, green, blue;
