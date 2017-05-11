@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageSettings.hpp" />
+    <ClInclude Include="ray_tracing.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
