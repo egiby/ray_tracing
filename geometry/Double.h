@@ -31,13 +31,13 @@ namespace NDouble
     }
     
     template<typename T>
-    inline Double operator * (const Double &a, const T &b)
+    Double operator * (const Double &a, const T &b)
     {
         return Double(double(a) * double(b));
     }
     
     template<typename T>
-    inline Double operator * (const T &a, const Double &b)
+    Double operator * (const T &a, const Double &b)
     {
         return Double(double(a) * double(b));
     }
@@ -48,78 +48,46 @@ namespace NDouble
     }
     
     template<typename T>
-    inline Double operator / (const Double &a, const T &b)
+    Double operator / (const Double &a, const T &b)
     {
         return Double(double(a) / double(b));
     }
     
     template<typename T>
-    inline Double operator / (const T &a, const Double &b)
+    Double operator / (const T &a, const Double &b)
     {
         return Double(double(a) / double(b));
     }
 
-    inline Double operator + (const Double &a, const Double &b)
-    {
-        return Double(double(a) + double(b));
-    }
+    Double operator + (const Double &a, const Double &b);
 
-    inline Double operator - (const Double &a, const Double &b)
-    {
-        return Double(double(a) - double(b));
-    }
+    Double operator - (const Double &a, const Double &b);
 
-    inline bool operator == (const Double &a, const Double &b)
-    {
-        return fabs(a - b) < Double::EPS;
-    }
+    bool operator == (const Double &a, const Double &b);
 
-    inline bool operator < (const Double &a, const Double &b)
+    bool operator < (const Double &a, const Double &b);
+    
+    template<typename T>
+    bool operator < (const T &a, const Double &b)
     {
         return double(a) < double(b) - Double::EPS;
     }
     
     template<typename T>
-    inline bool operator < (const T &a, const Double &b)
-    {
-        return double(a) < double(b) - Double::EPS;
-    }
-    
-    template<typename T>
-    inline bool operator < (const Double &a, const T &b)
+    bool operator < (const Double &a, const T &b)
     {
         return double(a) < double(b) - Double::EPS;
     }
 
-    inline bool operator > (const Double &a, const Double &b)
-    {
-        return double(a) > double(b) + Double::EPS;
-    }
+    bool operator > (const Double &a, const Double &b);
 
-    inline bool operator > (const Double &a, const double &b)
-    {
-        return double(a) > double(b) + Double::EPS;
-    }
+    bool operator > (const Double &a, const double &b);
 
-    inline bool operator > (const double &a, const Double &b)
-    {
-        return double(a) > double(b) + Double::EPS;
-    }
+    bool operator > (const double &a, const Double &b);
 
-    inline std::istream& operator >> (std::istream &in, Double &d)
-    {
-        double _d;
-        in >> _d;
-        d = Double(_d);
-        
-        return in;
-    }
+    std::istream& operator >> (std::istream &in, Double &d);
     
-    inline std::ostream& operator << (std::ostream &out, const Double &d)
-    {
-        out << double(d);
-        return out;
-    }
+    std::ostream& operator << (std::ostream &out, const Double &d);
 };
 
 #endif

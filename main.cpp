@@ -37,10 +37,10 @@ int main()
     sources.push_back({2000, right_upper});
     sources.push_back({3000, (left_bottom_angle + right_upper) / 2});
     
-    NPainter::PNGPainter painter("models/teapot.stl", new NSTLParser::STLParser(eye, screen, sources));
+//    NPainter::PNGPainter painter("models/teapot.stl", new NSTLParser::STLParser(eye, screen, sources));
     //~ NPainter::Painter painter("models/humanoid.stl", new NSTLParser::STLParser(eye, screen, sources));
     //~ NPainter::Painter painter("models/cube.stl", new NSTLParser::STLParser(eye, screen, sources));
-//    NPainter::PNGPainter painter("settings.in");
+    NPainter::PNGPainter painter("settings.in");
     //~ NPainter::PNGPainter painter("settings.rt", new NRTParser::RTParser());
     //~ NPainter::Painter painter("settings2.in");
     
