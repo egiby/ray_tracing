@@ -13,7 +13,7 @@ NGeometry::Vector NGeometry::operator+(const NGeometry::Vector &v1, const NGeome
 }
 
 NGeometry::Vector NGeometry::operator-(const NGeometry::Vector &v1, const NGeometry::Vector &v2) {
-    return v1 + (-v2);
+    return {v1.x - v2.x, v1.y - v2.y, v1.z - v2.z};
 }
 
 NGeometry::Vector NGeometry::operator*(const NGeometry::Vector &v1, const double &c) {

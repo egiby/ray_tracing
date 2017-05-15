@@ -9,14 +9,16 @@ bool NConvexPolygon::isPointInConvexPolygon(const NGeometry::Point &p, const NCo
 
     for (ui32 i = 0; i < polygon.size(); ++i)
     {
-        double d = abs((polygon[i] - p) ^ (polygon[(i + 1) % polygon.size()] - p));
-        s_abs += d;
-
         ui32 next = (i + 1);
         if (next >= polygon.size())
             next -= polygon.size();
 
-        if (NDouble::greater(((polygon[i] - p) ^ (polygon[next] - p)) * polygon.normal(), 0.))
+        NGeometry::Vector normal = (polygon[i] - p) ^ (polygon[next] - p);
+
+        double d = abs(normal);
+        s_abs += d;
+
+        if (NDouble::greater(normal * polygon.normal(), 0.))
             s += d;
         else
             s -= d;
