@@ -9,7 +9,6 @@ namespace NConvexPolygon
     
     using NGeometry::Point;
     using NGeometry::Plane;
-    using NDouble::Double;
     
     class ConvexPolygon: public PlaneGeometricObject
     {

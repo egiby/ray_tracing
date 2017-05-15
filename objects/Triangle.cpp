@@ -16,7 +16,7 @@ NTriangle::Triangle::Triangle(const NGeometricObjects::Material *_material, cons
     vertex[2] = _vertex + side_2;
 }
 
-NDouble::Double NTriangle::Triangle::intersect(const NGeometry::Ray &ray) const {
+double NTriangle::Triangle::intersect(const NGeometry::Ray &ray) const {
     //~ cerr << "intersect\n";
     return intersectConvexPolygon(ray, this);
 }

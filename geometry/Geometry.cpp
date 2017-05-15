@@ -16,27 +16,27 @@ NGeometry::Vector NGeometry::operator-(const NGeometry::Vector &v1, const NGeome
     return v1 + (-v2);
 }
 
-NGeometry::Vector NGeometry::operator*(const NGeometry::Vector &v1, const NDouble::Double &c) {
+NGeometry::Vector NGeometry::operator*(const NGeometry::Vector &v1, const double &c) {
     return {v1.x * c, v1.y * c, v1.z * c};
 }
 
-NGeometry::Vector NGeometry::operator*(const NDouble::Double &c, const NGeometry::Vector &v1) {
+NGeometry::Vector NGeometry::operator*(const double &c, const NGeometry::Vector &v1) {
     return v1 * c;
 }
 
-NDouble::Double NGeometry::operator*(const NGeometry::Vector &v1, const NGeometry::Vector &v2) {
+double NGeometry::operator*(const NGeometry::Vector &v1, const NGeometry::Vector &v2) {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 }
 
-NGeometry::Vector NGeometry::operator/(const NGeometry::Vector &v1, const NDouble::Double &c) {
-    return v1 * (Double(1) / c);
+NGeometry::Vector NGeometry::operator/(const NGeometry::Vector &v1, const double &c) {
+    return v1 * (1. / c);
 }
 
 NGeometry::Vector NGeometry::operator^(const NGeometry::Vector &v1, const NGeometry::Vector &v2) {
     return {v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z, v1.x * v2.y - v1.y * v2.x};
 }
 
-NDouble::Double NGeometry::abs(const NGeometry::Vector &p) {
+double NGeometry::abs(const NGeometry::Vector &p) {
     return sqrt(p * p);
 }
 
@@ -70,7 +70,7 @@ NGeometry::Plane::Plane(const NGeometry::Point &p1, const NGeometry::Point &p2, 
     Plane(normal, p3);
 }
 
-NDouble::Double NGeometry::Plane::operator()(const NGeometry::Point &p) const {
+double NGeometry::Plane::operator()(const NGeometry::Point &p) const {
     return a * p.x + b * p.y + c * p.z + d;
 }
 
@@ -81,7 +81,7 @@ NGeometry::Vector NGeometry::Plane::getNormal() const {
 NGeometry::Point NGeometry::Plane::intersect(const NGeometry::Line &l) {
     Vector normal = (*this)(l.start) * getNormal() / (getNormal() * getNormal());
 
-    if (normal * l.direction == Double(0.))
+    if (NDouble::isEqual(normal * l.direction, 0.))
         return INFINITY_POINT;
 
     return l.start - l.direction * (normal * normal) / (normal * l.direction); // it must work

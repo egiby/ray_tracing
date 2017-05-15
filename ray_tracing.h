@@ -13,8 +13,6 @@ namespace Calculations
 #include "geometry/Double.h"
 #include "geometry/Geometry.h"
 
-using NDouble::Double;
-
 namespace Geometry
 {
     using NGeometry::Point;

@@ -15,10 +15,8 @@ using std::cerr;
 typedef uint32_t ui32;
 
 namespace NGeometry {
-    using NDouble::Double;
-
     struct Point {
-        Double x, y, z;
+        double x, y, z;
 
         Point operator-() const;
     };
@@ -31,17 +29,17 @@ namespace NGeometry {
 
     Vector operator-(const Vector &v1, const Vector &v2);
 
-    Vector operator*(const Vector &v1, const Double &c);
+    Vector operator*(const Vector &v1, const double &c);
 
-    Vector operator*(const Double &c, const Vector &v1);
+    Vector operator*(const double &c, const Vector &v1);
 
-    Double operator*(const Vector &v1, const Vector &v2);
+    double operator*(const Vector &v1, const Vector &v2);
 
-    Vector operator/(const Vector &v1, const Double &c);
+    Vector operator/(const Vector &v1, const double &c);
 
     Vector operator^(const Vector &v1, const Vector &v2);
 
-    Double abs(const Vector &p);
+    double abs(const Vector &p);
 
     bool operator==(const Vector &v1, const Vector &v2);
 
@@ -61,13 +59,13 @@ namespace NGeometry {
     typedef Ray Line;
 
     struct Plane {
-        Double a, b, c, d;
+        double a, b, c, d;
 
         Plane(const Vector &normal, const Point &p);
 
         Plane(const Point &p1, const Point &p2, const Point &p3);
 
-        Double operator()(const Point &p) const;
+        double operator()(const Point &p) const;
 
         Vector getNormal() const;
 

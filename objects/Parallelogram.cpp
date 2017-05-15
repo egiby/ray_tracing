@@ -16,7 +16,7 @@ NParallelogram::Parallelogram::Parallelogram(const NGeometricObjects::Material *
     vertex[3] = _vertex + side_2;
 }
 
-NDouble::Double NParallelogram::Parallelogram::intersect(const NGeometry::Ray &ray) const {
+double NParallelogram::Parallelogram::intersect(const NGeometry::Ray &ray) const {
     return NConvexPolygon::intersectConvexPolygon(ray, this);
 }
 

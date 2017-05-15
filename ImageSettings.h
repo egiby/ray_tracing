@@ -25,7 +25,7 @@ namespace NImageSettings
     
     struct LightSource
     {
-        NDouble::Double light_force;
+        double light_force;
         Point point;
     };
     

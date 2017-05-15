@@ -9,16 +9,16 @@ NIntersecter::Intersecter::Intersecter(NImageSettings::ImageSettings *settings)
 }
 
 NIntersecter::Intersection NIntersecter::Intersecter::intersectAll(const NGeometry::Ray &ray) {
-    NDouble::Double min_coefficient = NGeometry::INFINITY_POINT.x;
+    double min_coefficient = NGeometry::INFINITY_POINT.x;
     NGeometricObjects::IGeometricObject *first_object = nullptr;
 
     for (auto object: settings->objects) {
-        NDouble::Double coefficient = object->intersect(ray);
+        double coefficient = object->intersect(ray);
 
-        if (coefficient < NDouble::Double(0.))
+        if (NDouble::less(coefficient, 0.))
             continue;
 
-        if (coefficient < min_coefficient) {
+        if (NDouble::less(coefficient, min_coefficient)) {
             first_object = object;
             min_coefficient = coefficient;
         }
@@ -35,7 +35,7 @@ NGeometricObjects::Color NIntersecter::calcColor(const Intersection &result,
     if (result.object == nullptr)
         return {0, 0, 0};
 
-    NDouble::Double illuminance = 0.;
+    double illuminance = 0.;
 
     for (const auto &source: settings->light_sources) {
         auto light_ray = NGeometry::Ray(source.point, result.point - source.point);
@@ -47,7 +47,7 @@ NGeometricObjects::Color NIntersecter::calcColor(const Intersection &result,
         auto radius = -(result.point - source.point);
         auto normal = result.object->getNormal(result.point);
 
-        illuminance += source.light_force * std::max(radius * normal, Double(0.)) /
+        illuminance += source.light_force * std::max(radius * normal, 0.) /
                        (std::pow(abs(radius), 3) * abs(normal));
     }
 

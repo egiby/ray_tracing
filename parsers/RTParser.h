@@ -34,8 +34,8 @@ namespace NRTParser
         void parseEntry(std::ifstream &in, std::map<string, Material*> &materials);
         
         std::map<string, Material*> parseMaterials(std::ifstream &in);
-        
-        NDouble::Double parseReference(std::ifstream &in);
+
+        double parseReference(std::ifstream &in);
         
         LightSource parsePoint(std::ifstream &in);
         

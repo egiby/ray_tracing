@@ -19,21 +19,21 @@ namespace NGeometricObjects
         ui32 red, green, blue;
     };
     
-    Color operator * (const Color &c, const NDouble::Double &d);
+    Color operator * (const Color &c, const double &d);
     
     struct Material
     {
-        NDouble::Double alpha;
-        NDouble::Double reflect;
-        NDouble::Double refract;
+        double alpha;
+        double reflect;
+        double refract;
         
         Color color;
         
         bool has_texture;
         // TODO: add texture support
         
-        Material (Color color, NDouble::Double _alpha = 0, NDouble::Double reflect = 0,
-                  NDouble::Double refract = 0);
+        Material (Color color, double _alpha = 0, double reflect = 0,
+                  double refract = 0);
         
         Color calcColor(int x, int y) const;
     };
@@ -41,7 +41,7 @@ namespace NGeometricObjects
     class IGeometricObject
     {
     public:
-        virtual NDouble::Double intersect(const NGeometry::Ray &r) const = 0;
+        virtual double intersect(const NGeometry::Ray &r) const = 0;
         virtual const Material * getMaterial() const = 0;
         virtual NGeometry::Vector getNormal(const NGeometry::Point &p) const = 0;
         //~ virtual NGeometry::Point getCenter() const = 0;

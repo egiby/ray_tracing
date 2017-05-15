@@ -9,8 +9,6 @@
 
 namespace NIntersecter
 {
-    using NDouble::Double;
-
     struct Intersection
     {
         NGeometry::Point point;

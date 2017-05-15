@@ -15,8 +15,8 @@ namespace NTriangle
         Point vertex[3];
     public:
         Triangle(const Material * _material, const Point &_vertex, const Vector &side_1, const Vector &side_2);
-        
-        NDouble::Double intersect(const NGeometry::Ray &ray) const;
+
+        double intersect(const NGeometry::Ray &ray) const;
         
         virtual const NGeometry::Vector& normal() const;
         

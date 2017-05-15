@@ -55,7 +55,7 @@ NRTParser::RTParser::parseEntry(std::ifstream &in, std::map<std::string, NGeomet
     string word;
 
     string name;
-    NDouble::Double alpha(0), reflect(0), refract(0);
+    double alpha(0), reflect(0), refract(0);
     Color color;
     string filename = "";
 
@@ -121,11 +121,11 @@ std::map<std::string, NGeometricObjects::Material *> NRTParser::RTParser::parseM
     return materials;
 }
 
-NDouble::Double NRTParser::RTParser::parseReference(std::ifstream &in) {
+double NRTParser::RTParser::parseReference(std::ifstream &in) {
     string word;
 
-    NDouble::Double distance = 1;
-    NDouble::Double power = 1;
+    double distance = 1;
+    double power = 1;
     while (1) {
         in >> word;
 
@@ -176,7 +176,7 @@ NImageSettings::LightSource NRTParser::RTParser::parsePoint(std::ifstream &in) {
 }
 
 std::vector<NImageSettings::LightSource> NRTParser::RTParser::parseLightSources(std::ifstream &in) {
-    NDouble::Double coeff = 1;
+    double coeff = 1;
     std::vector<LightSource> sources;
 
     string word;
@@ -211,7 +211,7 @@ std::vector<NImageSettings::LightSource> NRTParser::RTParser::parseLightSources(
 NGeometricObjects::IGeometricObject *
 NRTParser::RTParser::parseSphere(std::ifstream &in, std::map<std::string, NGeometricObjects::Material *> materials) {
     Point center;
-    NDouble::Double radius(0);
+    double radius(0);
     Material *material(0);
 
     string word;

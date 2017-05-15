@@ -61,7 +61,7 @@ NImageSettings::ImageSettings *NDefaultParser::DefaultParser::parseFile(std::str
         if (word == "light_source")
         {
             Point point;
-            NDouble::Double force;
+            double force;
             in >> point >> force;
 
             sources.push_back(LightSource{force, point});
@@ -70,7 +70,7 @@ NImageSettings::ImageSettings *NDefaultParser::DefaultParser::parseFile(std::str
         if (word == "sphere")
         {
             Point center;
-            NDouble::Double radius;
+            double radius;
             Color c;
             in >> center >> radius >> c.red >> c.green >> c.blue;
 

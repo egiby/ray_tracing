@@ -5,7 +5,7 @@
 #include "GeometricObject.h"
 
 NGeometricObjects::Color NGeometricObjects::operator*(const NGeometricObjects::Color &c,
-                                                      const NDouble::Double &d) {
+                                                      const double &d) {
     int r = std::min(std::max((int) std::lround(c.red * d), 0), 255),
             g = std::min(std::max((int) std::lround(c.green * d), 0), 255),
             b = std::min(std::max((int) std::lround(c.blue * d), 0), 255);
@@ -13,8 +13,8 @@ NGeometricObjects::Color NGeometricObjects::operator*(const NGeometricObjects::C
     return {(ui32) r, (ui32) g, (ui32) b};
 }
 
-NGeometricObjects::Material::Material(NGeometricObjects::Color color, NDouble::Double _alpha, NDouble::Double reflect,
-                                      NDouble::Double refract)
+NGeometricObjects::Material::Material(NGeometricObjects::Color color, double _alpha, double reflect,
+                                      double refract)
         : alpha(_alpha), reflect(reflect), refract(refract), color(color), has_texture(0)
 {
 }

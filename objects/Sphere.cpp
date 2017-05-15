@@ -4,14 +4,14 @@
 
 #include "Sphere.h"
 
-NSphere::Sphere::Sphere(const NGeometry::Point &center, const NDouble::Double &radius,
+NSphere::Sphere::Sphere(const NGeometry::Point &center, const double &radius,
                         const NGeometricObjects::Material *material)
         : center(center), radius(radius), material(material)
 {
 }
 
-NDouble::Double NSphere::Sphere::intersect(const NGeometry::Ray &r) const {
-    NDouble::Double coefficient = (r.direction * (center - r.start)) / (r.direction * r.direction);
+double NSphere::Sphere::intersect(const NGeometry::Ray &r) const {
+    double coefficient = (r.direction * (center - r.start)) / (r.direction * r.direction);
     NGeometry::Point closest = r.start + r.direction * coefficient;
 
     if ((closest - center) * (closest - center) > radius * radius)
@@ -22,7 +22,7 @@ NDouble::Double NSphere::Sphere::intersect(const NGeometry::Ray &r) const {
         return coefficient;
     }
 
-    NDouble::Double d_coef = sqrt(radius * radius - (closest - center) * (closest - center)) / abs(r.direction);
+    double d_coef = sqrt(radius * radius - (closest - center) * (closest - center)) / abs(r.direction);
 
     if (coefficient - d_coef >= 0.)
         return coefficient - d_coef;
