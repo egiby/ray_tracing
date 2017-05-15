@@ -1,7 +1,7 @@
 #ifndef _PLANE_GEOMETRIC_OBJECT
 #define _PLANE_GEOMETRIC_OBJECT
 
-#include "GeometricObject.hpp"
+#include "GeometricObject.h"
 
 #include <cassert>
 
@@ -14,16 +14,9 @@ namespace NPlaneGeometricObject
     public:
         virtual const NGeometry::Vector& normal() const = 0;
         
-        NGeometry::Vector getNormal(const NGeometry::Point &p) const
-        {
-            assert(p != NGeometry::INFINITY_POINT);
-            return normal();
-        }
+        NGeometry::Vector getNormal(const NGeometry::Point &p) const;
         
-        const NGeometricObjects::Material * getMaterial() const
-        {
-            return material;
-        }
+        const NGeometricObjects::Material * getMaterial() const;
     };
 };
 

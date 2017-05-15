@@ -1,6 +1,6 @@
-#include "painters/PNGPainter.hpp"
-#include "parsers/STLParser.hpp"
-#include "parsers/RTParser.hpp"
+#include "painters/PNGPainter.h"
+#include "parsers/STLParser.h"
+#include "parsers/RTParser.h"
 
 #include <iostream>
 #include <chrono>

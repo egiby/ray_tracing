@@ -1,7 +1,7 @@
 #ifndef RAY_TRACING_RAY_TRACING_H
 #define RAY_TRACING_RAY_TRACING_H
 
-#include "calculations/Intersecter.hpp"
+#include "calculations/Intersecter.h"
 
 namespace Calculations
 {
@@ -10,8 +10,8 @@ namespace Calculations
     using NIntersecter::calcColor;
 }
 
-#include "geometry/Double.hpp"
-#include "geometry/Geometry.hpp"
+#include "geometry/Double.h"
+#include "geometry/Geometry.h"
 
 using NDouble::Double;
 
@@ -25,10 +25,10 @@ namespace Geometry
     using NGeometry::Plane;
 }
 
-#include "objects/GeometricObject.hpp"
-#include "objects/Parallelogram.hpp"
-#include "objects/Sphere.hpp"
-#include "objects/Triangle.hpp"
+#include "objects/GeometricObject.h"
+#include "objects/Parallelogram.h"
+#include "objects/Sphere.h"
+#include "objects/Triangle.h"
 
 using NGeometricObjects::Color;
 using NGeometricObjects::Material;
@@ -41,10 +41,10 @@ namespace GeometricObjects
     using NTriangle::Triangle;
 }
 
-#include "parsers/DefaultParser.hpp"
+#include "parsers/DefaultParser.h"
 #include "parsers/IFileParser.hpp"
-#include "parsers/RTParser.hpp"
-#include "parsers/STLParser.hpp"
+#include "parsers/RTParser.h"
+#include "parsers/STLParser.h"
 
 namespace Parsers
 {
@@ -54,7 +54,7 @@ namespace Parsers
     using NSTLParser::STLParser;
 }
 
-#include "ImageSettings.hpp"
+#include "ImageSettings.h"
 
 namespace ImageSettings
 {

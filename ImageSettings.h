@@ -1,9 +1,9 @@
 #ifndef _IMAGE_SETTINGS
 #define _IMAGE_SETTINGS
 
-#include "geometry/Double.hpp"
-#include "geometry/Geometry.hpp"
-#include "objects/GeometricObject.hpp"
+#include "geometry/Double.h"
+#include "geometry/Geometry.h"
+#include "objects/GeometricObject.h"
 
 #include <vector>
 
@@ -20,11 +20,7 @@ namespace NImageSettings
         Vector y_basis;
         
         Screen(const Point &left_bottom_angle, const Point &left_upper, const Point &right_bottom, 
-               ui32 x_size = 500, ui32 y_size = 500)
-        : x_size(x_size), y_size(y_size), left_bottom_angle(left_bottom_angle), 
-        x_basis((right_bottom - left_bottom_angle) / x_size), y_basis((left_upper - left_bottom_angle) / y_size)
-        {
-        }
+               ui32 x_size = 500, ui32 y_size = 500);
     };
     
     struct LightSource
@@ -41,13 +37,7 @@ namespace NImageSettings
         std::vector<LightSource> light_sources;
         std::vector<NGeometricObjects::Material*> materials;
         
-        ~ImageSettings()
-        {
-            for (auto object: objects)
-                delete object;
-            for (auto material: materials)
-                delete material;
-        }
+        ~ImageSettings();
     };
     
     const Point DEFAULT_EYE = {-100000, 0, 0};
