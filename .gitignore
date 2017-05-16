@@ -1,0 +1,5 @@
+main
+log*
+gmon.out
+.idea
+cmake-build-debug
