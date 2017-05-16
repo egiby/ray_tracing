@@ -5,7 +5,20 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "-O3 -Wall -Wextra")
 
 set(SOURCE_FILES
-        main.cpp)
+        calculations/Intersecter.cpp
+        geometry/Double.cpp
+        geometry/Geometry.cpp
+        objects/GeometricObject.cpp
+        objects/PlaneGeometricObject.cpp
+        objects/Sphere.cpp
+        objects/ConvexPolygon.cpp
+        objects/Parallelogram.cpp
+        objects/Triangle.cpp
+        main.cpp parsers/DefaultParser.cpp
+        ImageSettings.cpp
+        parsers/RTParser.cpp
+        parsers/STLParser.cpp
+        painters/PNGPainter.cpp)
 add_executable(ray_tracing ${SOURCE_FILES})
 
 find_package(OpenMP)

@@ -1,5 +1,5 @@
-#include "painters/PNGPainter.hpp"
 #include "ray_tracing.h"
+#include "painters/PNGPainter.h"
 
 #include <iostream>
 #include <chrono>

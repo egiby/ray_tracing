@@ -1,7 +1,7 @@
 #ifndef _I_FILE_PARSER
 #define _I_FILE_PARSER
 
-#include "../ImageSettings.hpp"
+#include "../ImageSettings.h"
 
 #include <string>
 
