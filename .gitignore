@@ -4,3 +4,8 @@ Debug
 packages
 ray_tracing.VC.db
 ray_tracing.VC.VC.opendb
+main
+log*
+gmon.out
+.idea
+cmake-build-debug
