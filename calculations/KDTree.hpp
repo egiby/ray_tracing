@@ -1,7 +1,7 @@
 #ifndef _KDTREE
 #define _KDTREE
 
-#include "../objects/GeometricObject.hpp"
+#include "../objects/GeometricObject.h"
 
 class KDTree
 {

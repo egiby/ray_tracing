@@ -1,6 +1,6 @@
-#include "painters/PNGPainter.hpp"
-#include "parsers/STLParser.hpp"
-#include "parsers/RTParser.hpp"
+#include "painters/PNGPainter.h"
+#include "parsers/STLParser.h"
+#include "parsers/RTParser.h"
 
 #include <iostream>
 #include <chrono>
@@ -17,12 +17,12 @@ int main()
     auto start = std::chrono::system_clock::now();
 
     //~ // teapot
-//    Screen screen = Screen(Point{150, 150, 100}, Point{150, 0, 100}, Point{0, 150, 100}, 500, 500);
-//    Point eye = {0, 0, 100000};
+    Screen screen = Screen(Point{150, 150, 100}, Point{150, 0, 100}, Point{0, 150, 100}, 500, 500);
+    Point eye = {0, 0, 100000};
     
     // humanoid and cube
-    Screen screen = Screen(Point{-30, -10, 20}, Point{-30, -10, -20}, Point{10, 30, 20}, 500, 500);
-    Point eye = {-100000, 100000, 0};
+//    Screen screen = Screen(Point{-30, -10, 20}, Point{-30, -10, -20}, Point{10, 30, 20}, 500, 500);
+//    Point eye = {-100000, 100000, 0};
     
     std::vector<NImageSettings::LightSource> sources;
     
