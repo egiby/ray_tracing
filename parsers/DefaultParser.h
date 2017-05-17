@@ -10,6 +10,8 @@
 #include <iostream>
 #include <fstream>
 
+#include "../ApiHeader.h"
+
 /*
  * language:
  * <point> = <double> <double> <double>
@@ -60,7 +62,7 @@ namespace NDefaultParser
     using NGeometricObjects::Material;
     using NIFileParser::IFileParser;
     
-    class DefaultParser: public IFileParser
+    class RAYTRACINGAPI DefaultParser: public IFileParser
     {
     public:
         ImageSettings * parseFile(std::string filename);

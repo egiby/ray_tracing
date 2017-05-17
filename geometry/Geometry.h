@@ -14,8 +14,10 @@ using std::cerr;
 
 typedef uint32_t ui32;
 
+#include "../ApiHeader.h"
+
 namespace NGeometry {
-    struct Point {
+    struct RAYTRACINGAPI Point {
         double x, y, z;
 
         Point operator-() const;
@@ -25,31 +27,31 @@ namespace NGeometry {
 
     typedef Point Vector;
 
-    Vector operator+(const Vector &v1, const Vector &v2);
+	RAYTRACINGAPI Vector operator+(const Vector &v1, const Vector &v2);
 
-    Vector operator-(const Vector &v1, const Vector &v2);
+	RAYTRACINGAPI Vector operator-(const Vector &v1, const Vector &v2);
 
-    Vector operator*(const Vector &v1, const double &c);
+	RAYTRACINGAPI Vector operator*(const Vector &v1, const double &c);
 
-    Vector operator*(const double &c, const Vector &v1);
+	RAYTRACINGAPI Vector operator*(const double &c, const Vector &v1);
 
-    double operator*(const Vector &v1, const Vector &v2);
+	RAYTRACINGAPI double operator*(const Vector &v1, const Vector &v2);
 
-    Vector operator/(const Vector &v1, const double &c);
+	RAYTRACINGAPI Vector operator/(const Vector &v1, const double &c);
 
-    Vector operator^(const Vector &v1, const Vector &v2);
+	RAYTRACINGAPI Vector operator^(const Vector &v1, const Vector &v2);
 
-    double abs(const Vector &p);
+	RAYTRACINGAPI double abs(const Vector &p);
 
-    bool operator==(const Vector &v1, const Vector &v2);
+	RAYTRACINGAPI bool operator==(const Vector &v1, const Vector &v2);
 
-    bool operator!=(const Vector &v1, const Vector &v2);
+	RAYTRACINGAPI bool operator!=(const Vector &v1, const Vector &v2);
 
-    std::ostream &operator<<(std::ostream &out, const Point &p);
+	RAYTRACINGAPI std::ostream &operator<<(std::ostream &out, const Point &p);
 
-    std::istream &operator>>(std::istream &in, Point &p);
+	RAYTRACINGAPI std::istream &operator>>(std::istream &in, Point &p);
 
-    struct Ray {
+    struct RAYTRACINGAPI Ray {
         Point start;
         Vector direction;
 
@@ -58,7 +60,7 @@ namespace NGeometry {
 
     typedef Ray Line;
 
-    struct Plane {
+    struct RAYTRACINGAPI Plane {
         double a, b, c, d;
 
         Plane(const Vector &normal, const Point &p);

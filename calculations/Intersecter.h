@@ -7,15 +7,17 @@
 #include "../objects/GeometricObject.h"
 #include "../ImageSettings.h"
 
+#include "../ApiHeader.h"
+
 namespace NIntersecter
 {
-    struct Intersection
+    struct RAYTRACINGAPI Intersection
     {
         NGeometry::Point point;
         NGeometricObjects::IGeometricObject * object;
     };
 
-    class Intersecter
+    class RAYTRACINGAPI Intersecter
     {
         NImageSettings::ImageSettings * settings;
     public:
@@ -24,7 +26,7 @@ namespace NIntersecter
         Intersection intersectAll(const NGeometry::Ray &ray);
     };
 
-    NGeometricObjects::Color calcColor(const Intersection &result, const NImageSettings::ImageSettings * settings,
+	RAYTRACINGAPI NGeometricObjects::Color calcColor(const Intersection &result, const NImageSettings::ImageSettings * settings,
                                        Intersecter * intersecter);
 }
 

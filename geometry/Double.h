@@ -4,11 +4,13 @@
 #include <cmath>
 #include <iostream>
 
+#include "../ApiHeader.h"
+
 namespace NDouble
 {
-    bool isEqual(const double, const double);
-    bool less(const double, const double);
-    bool greater(const double, const double);
+    bool RAYTRACINGAPI isEqual(const double, const double);
+    bool RAYTRACINGAPI less(const double, const double);
+    bool RAYTRACINGAPI greater(const double, const double);
 
     const double EPS = 1e-9;
 };

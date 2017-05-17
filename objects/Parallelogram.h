@@ -3,13 +3,15 @@
 
 #include "ConvexPolygon.h"
 
+#include "../ApiHeader.h"
+
 namespace NParallelogram
 {
     using NGeometry::Point;
     using NGeometry::Vector;
     using NGeometricObjects::Material;
     
-    class Parallelogram: public NConvexPolygon::ConvexPolygon
+    class RAYTRACINGAPI Parallelogram: public NConvexPolygon::ConvexPolygon
     {
         Vector normal_vector;
         Point vertex[4];

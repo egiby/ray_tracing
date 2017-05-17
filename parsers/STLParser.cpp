@@ -2,8 +2,10 @@
 // Created by egiby on 15.05.17.
 //
 
-#include "STLParser.h"
 #include "../objects/Triangle.h"
+
+#include "../ApiImplementation.h"
+#include "STLParser.h"
 
 NGeometry::Point NSTLParser::STLParser::readVertex(std::ifstream &in) {
     std::string word;

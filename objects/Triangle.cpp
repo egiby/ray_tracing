@@ -2,6 +2,7 @@
 // Created by egiby on 15.05.17.
 //
 
+#include "../ApiImplementation.h"
 #include "Triangle.h"
 
 NTriangle::Triangle::Triangle(const NGeometricObjects::Material *_material, const NGeometry::Point &_vertex,

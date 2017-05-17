@@ -2,6 +2,7 @@
 // Created by egiby on 15.05.17.
 //
 
+#include "../ApiImplementation.h"
 #include "GeometricObject.h"
 
 NGeometricObjects::Color NGeometricObjects::operator*(const NGeometricObjects::Color &c,

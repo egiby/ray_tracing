@@ -3,13 +3,15 @@
 
 #include "ConvexPolygon.h"
 
+#include "../ApiHeader.h"
+
 namespace NTriangle
 {
     using NGeometry::Point;
     using NGeometry::Vector;
     using NGeometricObjects::Material;
     
-    class Triangle: public NConvexPolygon::ConvexPolygon
+    class RAYTRACINGAPI Triangle: public NConvexPolygon::ConvexPolygon
     {
         Vector normal_vector;
         Point vertex[3];

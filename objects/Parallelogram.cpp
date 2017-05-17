@@ -2,6 +2,7 @@
 // Created by egiby on 15.05.17.
 //
 
+#include "../ApiImplementation.h"
 #include "Parallelogram.h"
 
 NParallelogram::Parallelogram::Parallelogram(const NGeometricObjects::Material *_material,

@@ -4,13 +4,14 @@
 #include "GeometricObject.h"
 #include "../ImageSettings.h"
 
+#include "../ApiHeader.h"	
 
 namespace NSphere
 {
     using NGeometricObjects::Material;
 
 
-    class Sphere: public NGeometricObjects::IGeometricObject
+    class RAYTRACINGAPI Sphere: public NGeometricObjects::IGeometricObject
     {
         NGeometry::Point center;
         double radius;

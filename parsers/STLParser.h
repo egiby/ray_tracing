@@ -8,6 +8,8 @@
 
 #include <cassert>
 
+#include "../ApiHeader.h"
+
 namespace NSTLParser
 {
     using NImageSettings::ImageSettings;
@@ -22,7 +24,7 @@ namespace NSTLParser
     using NImageSettings::LightSource;
     using NIFileParser::IFileParser;
     
-    class STLParser: public IFileParser
+    class RAYTRACINGAPI STLParser: public IFileParser
     {
         Point readVertex(std::ifstream &in);
         

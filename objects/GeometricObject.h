@@ -11,17 +11,19 @@
 #include <iostream>
 #include <algorithm>
 
+#include "../ApiHeader.h"
+
 namespace NGeometricObjects
 {
     using std::cerr;
-    struct Color
+    struct RAYTRACINGAPI Color
     {
         ui32 red, green, blue;
     };
     
-    Color operator * (const Color &c, const double &d);
+	RAYTRACINGAPI Color operator * (const Color &c, const double &d);
     
-    struct Material
+    struct RAYTRACINGAPI Material
     {
         double alpha;
         double reflect;
@@ -38,7 +40,7 @@ namespace NGeometricObjects
         Color calcColor(int x, int y) const;
     };
     
-    class IGeometricObject
+    class RAYTRACINGAPI IGeometricObject
     {
     public:
         virtual double intersect(const NGeometry::Ray &r) const = 0;

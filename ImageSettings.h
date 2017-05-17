@@ -7,12 +7,14 @@
 
 #include <vector>
 
+#include "ApiHeader.h"
+
 namespace NImageSettings
 {
     using NGeometry::Point;
     using NGeometry::Vector;
     
-    struct Screen
+    struct RAYTRACINGAPI Screen
     {
         ui32 x_size, y_size;
         Point left_bottom_angle;
@@ -23,13 +25,13 @@ namespace NImageSettings
                ui32 x_size = 500, ui32 y_size = 500);
     };
     
-    struct LightSource
+    struct RAYTRACINGAPI LightSource
     {
         double light_force;
         Point point;
     };
     
-    struct ImageSettings
+    struct RAYTRACINGAPI ImageSettings
     {
         Point eye;
         Screen screen;

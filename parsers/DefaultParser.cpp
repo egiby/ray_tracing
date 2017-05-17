@@ -2,6 +2,7 @@
 // Created by egiby on 15.05.17.
 //
 
+#include "../ApiImplementation.h"
 #include "DefaultParser.h"
 
 NImageSettings::ImageSettings *NDefaultParser::DefaultParser::parseFile(std::string filename) {

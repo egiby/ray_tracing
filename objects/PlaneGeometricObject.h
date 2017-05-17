@@ -5,9 +5,11 @@
 
 #include <cassert>
 
+#include "../ApiHeader.h"
+
 namespace NPlaneGeometricObject
 {
-    class PlaneGeometricObject: public NGeometricObjects::IGeometricObject
+    class RAYTRACINGAPI PlaneGeometricObject: public NGeometricObjects::IGeometricObject
     {
     protected:
         const NGeometricObjects::Material * material;

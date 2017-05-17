@@ -5,9 +5,11 @@
 
 #include <string>
 
+#include "../ApiHeader.h"
+
 namespace NIFileParser
 {
-    class IFileParser
+    class RAYTRACINGAPI IFileParser
     {
     public:
         virtual NImageSettings::ImageSettings * parseFile(std::string filename) = 0;

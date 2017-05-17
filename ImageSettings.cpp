@@ -2,6 +2,7 @@
 // Created by egiby on 15.05.17.
 //
 
+#include "ApiImplementation.h"
 #include "ImageSettings.h"
 
 NImageSettings::Screen::Screen(const NGeometry::Point &left_bottom_angle, const NGeometry::Point &left_upper,

@@ -2,6 +2,7 @@
 // Created by egiby on 15.05.17.
 //
 
+#include "../ApiImplementation.h"
 #include "ConvexPolygon.h"
 
 bool NConvexPolygon::isPointInConvexPolygon(const NGeometry::Point &p, const NConvexPolygon::ConvexPolygon &polygon) {

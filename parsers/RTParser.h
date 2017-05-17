@@ -11,6 +11,8 @@
 #include <fstream>
 #include <map>
 
+#include "../ApiHeader.h"
+
 namespace NRTParser
 {
     using NImageSettings::ImageSettings;
@@ -27,7 +29,7 @@ namespace NRTParser
     
     using std::string;
     
-    class RTParser: public IFileParser
+    class RAYTRACINGAPI RTParser: public IFileParser
     {
         Screen parseVievport(std::ifstream &in, Point &eye);
         
