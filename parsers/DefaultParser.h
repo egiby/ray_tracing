@@ -65,6 +65,7 @@ namespace NDefaultParser
     class RAYTRACINGAPI DefaultParser: public IFileParser
     {
     public:
+		ImageSettings * parse( std::ifstream &in );
         ImageSettings * parseFile(std::string filename);
     };
 };

@@ -318,44 +318,47 @@ std::vector<IGeometricObject *> NRTParser::RTParser::parseGeometry(std::ifstream
     return objects;
 }
 
+NImageSettings::ImageSettings* NRTParser::RTParser::parse( std::ifstream& in ) {
+	Point eye = NImageSettings::DEFAULT_EYE;
+	Screen screen = NImageSettings::DEFAULT_SCREEN;
+	std::vector<IGeometricObject *> objects;
+	std::vector<LightSource> sources;
+	std::vector<Material *> materials;
+	std::map<string, Material *> id_to_material;
+
+	std::string word;
+	while( in >> word ) {
+		cerr << word << '\n';
+		if( word[0] == '#' ) {
+			std::getline( in, word );
+			continue;
+		}
+
+		if( word == "viewport" ) {
+			screen = parseVievport( in, eye );
+		}
+
+		if( word == "materials" ) {
+			id_to_material = parseMaterials( in );
+			for( auto p : id_to_material )
+				materials.push_back( p.second );
+		}
+
+		if( word == "lights" ) {
+			sources = parseLightSources( in );
+		}
+
+		if( word == "geometry" ) {
+			objects = parseGeometry( in, id_to_material );
+		}
+	}
+
+	//~ cerr << eye << '\n' << objects.size() << ' ' << sources.size() << ' ' << materials.size() << '\n';
+
+	return new ImageSettings{ eye, screen, objects, sources, materials };
+}
+
 NImageSettings::ImageSettings *NRTParser::RTParser::parseFile(std::string filename) {
-    Point eye = NImageSettings::DEFAULT_EYE;
-    Screen screen = NImageSettings::DEFAULT_SCREEN;
-    std::vector<IGeometricObject *> objects;
-    std::vector<LightSource> sources;
-    std::vector<Material *> materials;
-    std::map<string, Material *> id_to_material;
-
-    std::ifstream in(filename);
-
-    std::string word;
-    while (in >> word) {
-        cerr << word << '\n';
-        if (word[0] == '#') {
-            std::getline(in, word);
-            continue;
-        }
-
-        if (word == "viewport") {
-            screen = parseVievport(in, eye);
-        }
-
-        if (word == "materials") {
-            id_to_material = parseMaterials(in);
-            for (auto p: id_to_material)
-                materials.push_back(p.second);
-        }
-
-        if (word == "lights") {
-            sources = parseLightSources(in);
-        }
-
-        if (word == "geometry") {
-            objects = parseGeometry(in, id_to_material);
-        }
-    }
-
-    //~ cerr << eye << '\n' << objects.size() << ' ' << sources.size() << ' ' << materials.size() << '\n';
-
-    return new ImageSettings{eye, screen, objects, sources, materials};
+	std::ifstream in( filename );
+	return parse( in );
 }

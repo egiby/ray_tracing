@@ -37,6 +37,7 @@ namespace NSTLParser
                    Screen screen = NImageSettings::DEFAULT_SCREEN,
                    std::vector<LightSource> sources = std::vector<LightSource>());
         
+		ImageSettings * parse(std::ifstream &in);
         ImageSettings * parseFile(std::string filename);
     };
 };

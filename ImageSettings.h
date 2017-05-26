@@ -22,7 +22,7 @@ namespace NImageSettings
         Vector y_basis;
         
         Screen(const Point &left_bottom_angle, const Point &left_upper, const Point &right_bottom, 
-               ui32 x_size = 500, ui32 y_size = 500);
+               ui32 x_size = 100, ui32 y_size = 100);
     };
     
     struct RAYTRACINGAPI LightSource
@@ -44,7 +44,7 @@ namespace NImageSettings
     
     const Point DEFAULT_EYE = {-100000, 0, 0};
     //~ const Point DEFAULT_EYE = {0, -100000, 0};
-    const Screen DEFAULT_SCREEN = Screen(Point{-1, -30, -30}, Point{-1, -30, 30}, Point{-1, 30, -30});
+    const Screen DEFAULT_SCREEN = Screen( Point{ -15, -5, 10 }, Point{ -15, -5, -10 }, Point{ 5, 15, 10 }, 500, 500 );
     //~ const Screen DEFAULT_SCREEN = Screen(Point{-30, -20, -30}, Point{-30, -20, 30}, Point{30, -20, -30});
 };
 #endif

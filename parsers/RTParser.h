@@ -50,6 +50,7 @@ namespace NRTParser
         std::vector<IGeometricObject*> parseGeometry(std::ifstream &in, const std::map<string, Material*> materials);
         
     public:
+		ImageSettings * parse( std::ifstream &in );
         ImageSettings * parseFile(std::string filename);
     };
 };

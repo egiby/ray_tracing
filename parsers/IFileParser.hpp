@@ -13,6 +13,7 @@ namespace NIFileParser
     {
     public:
         virtual NImageSettings::ImageSettings * parseFile(std::string filename) = 0;
+		virtual NImageSettings::ImageSettings * parse( std::ifstream& ) = 0;
         virtual ~IFileParser()
         {
         }
